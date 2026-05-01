@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora Fitness</title>
+
+    <style>
+    body {
+        background-image: url('fondo.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        display: flex;  
+        justify-content: center;    
+        align-items: center;       
+        height: 100vh;             
+        margin: 0; 
+    } 
+    </style>
+</head>
+
+<body>
+
+<div style="background-color: rgba(0,0,0,0.6); padding: 30px; border-radius: 10px; color: white; text-align: center;">
+
+    <h2>Calculadora de Proteinas</h2>
+
+    Nombre: <input type='text' id='nombre'><br><br>
+    Peso (kg): <input type='number' id='peso'><br><br>
+    Altura (m): <input type="number" step="0.01" id="altura"><br><br>
+
+    <button onclick='calcular()' style="padding: 10px 20px; border-radius: 8px; border: none; background-color: #4CAF50; color: white;">Calcular</button>
+
+    <p id="resultado"></p>
+
+</div>
+
+<script>
+function calcular() {
+    let nombre = document.getElementById('nombre').value;
+    let peso = parseFloat(document.getElementById('peso').value);
+    let altura = parseFloat(document.getElementById('altura').value);
+    
+    let imc = peso / (altura * altura);
+    let imc_redondeado = imc.toFixed(1);
+
+    let categoria = "";
+
+    if (imc < 18.5) {
+        categoria = 'bajo peso';
+    } else if (imc < 25) {
+        categoria = 'peso normal';
+    }else if (imc < 30) {
+        categoria = 'sobrepeso';
+    } else {
+        categoria = 'obesidad';
+    }   
+
+    let proteina_min = Math.round(peso * 1.6);
+    let proteina_max = Math.round(peso * 2);
+
+    document.getElementById('resultado').innerText =
+        nombre + ', tu IMC es ' + imc_redondeado + ' (' + categoria + ').\n' +
+        'Deberias consumir entre ' + proteina_min + 'g y ' + proteina_max + 'g de proteína.';
+}
+</script>
+
+</body>
+</html>
