@@ -21,7 +21,7 @@
     padding: 35px;
     border-radius: 18px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    width: 380px;
+    width: 480px;
     text-align: center;
 }    
 /* Titulo */
@@ -67,6 +67,11 @@ button:hover {
     color: #4c1d95;
     white-space: pre-line;
 }
+
+/* Transición suave entre pestañas */
+#calculadora, #proteinas {
+    transition: all 0.3s ease;
+}
 </style>
 
 <style>
@@ -74,6 +79,7 @@ button:hover {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    justify-content: center;
 }
 
 .tabs button {
