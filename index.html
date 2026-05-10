@@ -6,24 +6,105 @@
 
     <style>
     body {
-        background-image: url('fondo.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-
+        font-family: Arial, sans-serif;
+        background-color: #f5f3ff;
         display: flex;  
         justify-content: center;    
         align-items: center;       
         height: 100vh;             
         margin: 0; 
-    } 
-    </style>
+}
+    
+/* Tarjeta principal */
+.container {
+    background-color: white;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    width: 380px;
+    text-aling: center;
+}    
+/* Titulo */
+h2 { 
+    color: #6d28d9;
+    margin-bottom: 25px;
+}
+
+/* Inputs */
+input { 
+        width: 90%;
+        padding: 10px;
+        margin-top: 6px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+/* Boton */
+button {
+    width: 100%;
+    padding: 12px; 
+    background-color: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+} 
+
+button:hover {
+    background-color: #6d28d9;
+}
+
+/* Resultado */
+#resultado {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f3e8ff;
+    border-radius: 10px;
+    color: #4c1d95;
+    white-space: pre-line;
+}
+</style>
+
+<style>
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tabs button {
+    flex: 1;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    color: #6d28d9;
+}  
+</style>
 </head>
 
 <body>
 
-<div style="background-color: rgba(0,0,0,0.6); padding: 30px; border-radius: 10px; color: white; text-align: center;">
+<div class="tabs">
+    <button onclick="mostrarTab('calculadora')">Calculadora</button>
+    <button onclick="mostrarTab('ejercicios')">Proteínas Alimentos</button>
+</div>
 
+<div id="calculadora">
     <h2>Calculadora de Proteinas</h2>
 
     Nombre: <input type='text' id='nombre'><br><br>
@@ -34,6 +115,45 @@
 
     <p id="resultado"></p>
 
+</div>
+
+<div id="proteinas" style="display:none;">
+    <h2>Proteínas por 100gr</h2>
+    
+    <table>
+        <tr>
+            <th>Alimento</th>
+            <th>Proteína (g)</th>
+        </tr>
+        <tr>
+            <td>Pollo</td>
+            <td>31g</td>
+        </tr>
+        <tr>
+            <td>Carne vacuna magra</td>
+            <td>26g</td>
+        </tr>
+        <tr>
+            <td>Pescado</td>
+            <td>25g</td>
+        </tr>
+        <tr>
+            <td>Huevos</td>
+            <td>13g</td>
+        </tr>
+        <tr>
+            <td>Atún</td>
+            <td>29g</td>
+        </tr>
+        <tr>
+            <td>Frutos secos</td>
+            <td>20g</td>
+        </tr>
+        <tr>
+            <td>Yogurt Griego</td>
+            <td>10g</td>
+        </tr>
+    </table>
 </div>
 
 <script>
@@ -63,6 +183,15 @@ function calcular() {
     document.getElementById('resultado').innerText =
         nombre + ', tu IMC es ' + imc_redondeado + ' (' + categoria + ').\n' +
         'Deberias consumir entre ' + proteina_min + 'g y ' + proteina_max + 'g de proteína.';
+}
+</script>
+
+<script>
+function mostrarTab(tab) {
+    document.getElementById('calculadora').style.display = 'none';
+    document.getElementById('proteinas').style.display = 'none';
+
+    document.getElementById(tab).style.display = 'block';
 }
 </script>
 
